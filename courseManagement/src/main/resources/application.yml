@@ -1,13 +1,14 @@
 server:
-  port: 8090
+  port: 8070
 
 spring:
   application:
-    name: users
+    name: courseManagement
   config:
     import: optional:configserver:http://localhost:8080
+
   datasource:
-    url: jdbc:mysql://localhost:3306/user_microservice?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/courseManagement_microservice?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: ""
     driver-class-name: com.mysql.cj.jdbc.Driver
