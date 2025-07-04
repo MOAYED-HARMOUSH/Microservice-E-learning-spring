@@ -55,8 +55,7 @@ public class CourseController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         
-        // التحقق من أن الأستاذ يطلب كورساته فقط
-        Long tokenInstructorId = jwtUtil.getInstructorId(token);
+         Long tokenInstructorId = jwtUtil.getInstructorId(token);
         if (tokenInstructorId == null || !tokenInstructorId.equals(instructorId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }

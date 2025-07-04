@@ -20,25 +20,25 @@ public class CourseService {
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
-    
+
     public List<CourseDTO> getAcceptedCourses() {
         return courseRepository.findByStatus(Course.CourseStatus.ACCEPTED).stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
-    
+
     public List<CourseDTO> getPendingCourses() {
         return courseRepository.findByStatus(Course.CourseStatus.PENDING_ACCEPTANCE).stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
-    
+
     public CourseDTO getCourseById(Long id) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
         return convertToDTO(course);
     }
-    
+
     public List<CourseDTO> getCoursesByInstructor(Long instructorId) {
         return courseRepository.findByInstructorId(instructorId).stream()
                 .map(this::convertToDTO)

@@ -15,7 +15,6 @@ public class CourseDTO {
     
     private String description;
     
-    @NotNull(message = "Instructor ID is required")
     private Long instructorId;
     
     @NotNull(message = "Course cost is required")
