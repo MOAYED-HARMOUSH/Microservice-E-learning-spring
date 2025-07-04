@@ -193,10 +193,17 @@ public class UserService {
     public InstructorDTO createInstructor(UserRegistrationDTO dto) {
         logger.info("Creating instructor with email: {}", dto.getEmail());
         dto.setRole(UserRole.INSTRUCTOR);
+
         User user = registerUser(dto);
-        Instructor instructor = instructorRepository.findById(user.getId())
-            .orElseThrow(() -> new RuntimeException("Failed to create instructor"));
-        logger.info("Instructor created successfully: {} (ID: {})", user.getName(), user.getId());
+
+        Instructor instructor = new Instructor();
+        instructor.setUser(user);
+        instructor.setSpecialization(dto.getSpecialization());
+
+        instructorRepository.save(instructor);  // حفظ الكائن
+        instructorRepository.flush();           // اجبار حفظ فوري
+
+        // يمكنك إرجاع الكائن مباشرة دون إعادة الاستعلام:
         return convertToInstructorDTO(instructor);
     }
 

@@ -79,7 +79,7 @@ public class UserController {
     }
 
     @PostMapping("/instructors")
-    @PreAuthorize("hasRole('ADMIN')")
+     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<InstructorDTO> createInstructor(@Valid @RequestBody UserRegistrationDTO dto) {
         logger.info("Creating instructor with email: {}", dto.getEmail());
         try {
@@ -129,3 +129,4 @@ public class UserController {
         return ResponseEntity.ok("User Service is running");
     }
 }
+
