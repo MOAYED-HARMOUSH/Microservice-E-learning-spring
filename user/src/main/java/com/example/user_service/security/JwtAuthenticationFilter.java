@@ -28,30 +28,47 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         
         final String authorizationHeader = request.getHeader("Authorization");
 
+        // إذا لم يكن هناك Authorization header، اترك الطلب يمر للـ SecurityConfig
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String username = null;
         String jwt = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        try {
             jwt = authorizationHeader.substring(7);
-            try {
-                username = jwtUtil.extractEmail(jwt);
-            } catch (Exception e) {
-                logger.error("Error extracting email from JWT token", e);
+            username = jwtUtil.extractEmail(jwt);
+            
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                if (jwtUtil.validateToken(jwt)) {
+                    String role = jwtUtil.extractRole(jwt);
+                    Long userId = jwtUtil.extractUserId(jwt);
+                    
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        username, null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role))
+                    );
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    // Token غير صالح - أرسل خطأ 401
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"error\": \"Invalid JWT token\"}");
+                    return;
+                }
             }
+            
+            filterChain.doFilter(request, response);
+            
+        } catch (Exception e) {
+            logger.error("JWT authentication failed", e);
+            // أي خطأ في JWT - أرسل خطأ 401
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"error\": \"JWT authentication failed: " + e.getMessage() + "\"}");
+            return;
         }
-
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            if (jwtUtil.validateToken(jwt)) {
-                String role = jwtUtil.extractRole(jwt);
-                Long userId = jwtUtil.extractUserId(jwt);
-                
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    username, null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role))
-                );
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-            }
-        }
-        filterChain.doFilter(request, response);
     }
 } 
