@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // General login endpoint
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
         logger.info("Login attempt for email: {}", loginDTO.getEmail());
@@ -32,6 +33,48 @@ public class UserController {
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             logger.error("Login failed for email: {}", loginDTO.getEmail(), e);
+            throw e;
+        }
+    }
+    
+    // Instructor login endpoint
+    @PostMapping("/login/instructor")
+    public ResponseEntity<LoginResponseDTO> loginInstructor(@Valid @RequestBody LoginDTO loginDTO) {
+        logger.info("Instructor login attempt for email: {}", loginDTO.getEmail());
+        try {
+            LoginResponseDTO response = userService.loginInstructor(loginDTO);
+            logger.info("Instructor login successful for email: {}", loginDTO.getEmail());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            logger.error("Instructor login failed for email: {}", loginDTO.getEmail(), e);
+            throw e;
+        }
+    }
+    
+    // Admin login endpoint
+    @PostMapping("/login/admin")
+    public ResponseEntity<LoginResponseDTO> loginAdmin(@Valid @RequestBody LoginDTO loginDTO) {
+        logger.info("Admin login attempt for email: {}", loginDTO.getEmail());
+        try {
+            LoginResponseDTO response = userService.loginAdmin(loginDTO);
+            logger.info("Admin login successful for email: {}", loginDTO.getEmail());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            logger.error("Admin login failed for email: {}", loginDTO.getEmail(), e);
+            throw e;
+        }
+    }
+    
+    // Student login endpoint
+    @PostMapping("/login/student")
+    public ResponseEntity<LoginResponseDTO> loginStudent(@Valid @RequestBody LoginDTO loginDTO) {
+        logger.info("Student login attempt for email: {}", loginDTO.getEmail());
+        try {
+            LoginResponseDTO response = userService.loginStudent(loginDTO);
+            logger.info("Student login successful for email: {}", loginDTO.getEmail());
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            logger.error("Student login failed for email: {}", loginDTO.getEmail(), e);
             throw e;
         }
     }

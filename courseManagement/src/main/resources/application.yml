@@ -1,12 +1,15 @@
 server:
-  port: 8070
+  port: 8082
 
 spring:
   application:
-    name: courseManagement
+    name: COURSEMANAGEMENT
   config:
     import: optional:configserver:http://localhost:8080
-
+  cloud:
+    config:
+      uri: http://localhost:8080
+      fail-fast: false
   datasource:
     url: jdbc:mysql://localhost:3306/courseManagement_microservice?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
     username: root
@@ -19,10 +22,26 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
 
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+jwt:
+  secret: "thisIsA64CharacterLongSecretKeyForHS256AlgorithmThatIsSecureEnoughForJWT!!"

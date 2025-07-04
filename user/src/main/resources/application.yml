@@ -26,4 +26,4 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 jwt:
-  secret: "thisIsA32CharacterLongSecretKey!!"
+  secret: "thisIsA64CharacterLongSecretKeyForHS256AlgorithmThatIsSecureEnoughForJWT!!"

@@ -63,6 +63,93 @@ public class UserService {
         return response;
     }
 
+    public LoginResponseDTO loginInstructor(LoginDTO loginDTO) {
+        logger.info("Processing instructor login for email: {}", loginDTO.getEmail());
+
+        User user = userRepository.findByEmail(loginDTO.getEmail())
+            .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
+
+        if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+            logger.warn("Invalid password for email: {}", loginDTO.getEmail());
+            throw new InvalidCredentialsException("Invalid email or password");
+        }
+
+        if (user.getRole() != UserRole.INSTRUCTOR) {
+            logger.warn("User {} is not an instructor", loginDTO.getEmail());
+            throw new InvalidCredentialsException("Invalid credentials for instructor login");
+        }
+
+        String token = jwtUtil.generateToken(user);
+        logger.info("Instructor login successful for user: {} (ID: {})", user.getEmail(), user.getId());
+
+        LoginResponseDTO response = new LoginResponseDTO();
+        response.setUserId(user.getId());
+        response.setName(user.getName());
+        response.setEmail(user.getEmail());
+        response.setRole(user.getRole());
+        response.setToken(token);
+
+        return response;
+    }
+
+    public LoginResponseDTO loginAdmin(LoginDTO loginDTO) {
+        logger.info("Processing admin login for email: {}", loginDTO.getEmail());
+
+        User user = userRepository.findByEmail(loginDTO.getEmail())
+            .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
+
+        if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+            logger.warn("Invalid password for email: {}", loginDTO.getEmail());
+            throw new InvalidCredentialsException("Invalid email or password");
+        }
+
+        if (user.getRole() != UserRole.ADMIN) {
+            logger.warn("User {} is not an admin", loginDTO.getEmail());
+            throw new InvalidCredentialsException("Invalid credentials for admin login");
+        }
+
+        String token = jwtUtil.generateToken(user);
+        logger.info("Admin login successful for user: {} (ID: {})", user.getEmail(), user.getId());
+
+        LoginResponseDTO response = new LoginResponseDTO();
+        response.setUserId(user.getId());
+        response.setName(user.getName());
+        response.setEmail(user.getEmail());
+        response.setRole(user.getRole());
+        response.setToken(token);
+
+        return response;
+    }
+
+    public LoginResponseDTO loginStudent(LoginDTO loginDTO) {
+        logger.info("Processing student login for email: {}", loginDTO.getEmail());
+
+        User user = userRepository.findByEmail(loginDTO.getEmail())
+            .orElseThrow(() -> new InvalidCredentialsException("Invalid email or password"));
+
+        if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+            logger.warn("Invalid password for email: {}", loginDTO.getEmail());
+            throw new InvalidCredentialsException("Invalid email or password");
+        }
+
+        if (user.getRole() != UserRole.STUDENT) {
+            logger.warn("User {} is not a student", loginDTO.getEmail());
+            throw new InvalidCredentialsException("Invalid credentials for student login");
+        }
+
+        String token = jwtUtil.generateToken(user);
+        logger.info("Student login successful for user: {} (ID: {})", user.getEmail(), user.getId());
+
+        LoginResponseDTO response = new LoginResponseDTO();
+        response.setUserId(user.getId());
+        response.setName(user.getName());
+        response.setEmail(user.getEmail());
+        response.setRole(user.getRole());
+        response.setToken(token);
+
+        return response;
+    }
+
     public User registerUser(UserRegistrationDTO dto) {
         logger.info("Starting user registration for email: {}, role: {}", dto.getEmail(), dto.getRole());
         
@@ -196,15 +283,13 @@ public class UserService {
 
         User user = registerUser(dto);
 
-        Instructor instructor = new Instructor();
-        instructor.setUser(user);
-        instructor.setSpecialization(dto.getSpecialization());
-
-        instructorRepository.save(instructor);  // حفظ الكائن
-        instructorRepository.flush();           // اجبار حفظ فوري
-
-        // يمكنك إرجاع الكائن مباشرة دون إعادة الاستعلام:
-        return convertToInstructorDTO(instructor);
+        // البحث عن الـ instructor الذي تم إنشاؤه في registerUser
+        List<Instructor> instructors = instructorRepository.findByUser(user);
+        if (!instructors.isEmpty()) {
+            return convertToInstructorDTO(instructors.get(0));
+        } else {
+            throw new RuntimeException("Instructor entity was not created properly");
+        }
     }
 
     private InstructorDTO convertToInstructorDTO(Instructor instructor) {
