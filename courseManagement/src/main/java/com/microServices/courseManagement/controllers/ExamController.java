@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/exams")
+@RequestMapping("api/courses/exams")
 public class ExamController {
     
     @Autowired
@@ -36,7 +36,7 @@ public class ExamController {
     }
     
     @PostMapping
-    @PreAuthorize("hasRole('INSTRUCTOR')")
+//    @PreAuthorize("hasRole('INSTRUCTOR')")
     public ResponseEntity<ExamDTO> createExam(@Valid @RequestBody ExamDTO examDTO) {
         return ResponseEntity.ok(examService.createExam(examDTO));
     }

@@ -24,16 +24,19 @@ public class ExamDTO {
     @Positive(message = "Success degree must be positive")
     private Double successDegree;
     
+    private Long instructorId;
+    
     // Constructors
     public ExamDTO() {}
     
-    public ExamDTO(Long id, Long courseId, String name, String description, Double degree, Double successDegree) {
+    public ExamDTO(Long id, Long courseId, String name, String description, Double degree, Double successDegree, Long instructorId) {
         this.id = id;
         this.courseId = courseId;
         this.name = name;
         this.description = description;
         this.degree = degree;
         this.successDegree = successDegree;
+        this.instructorId = instructorId;
     }
     
     // Getters and Setters
@@ -83,5 +86,13 @@ public class ExamDTO {
     
     public void setSuccessDegree(Double successDegree) {
         this.successDegree = successDegree;
+    }
+    
+    public Long getInstructorId() {
+        return instructorId;
+    }
+    
+    public void setInstructorId(Long instructorId) {
+        this.instructorId = instructorId;
     }
 } 
