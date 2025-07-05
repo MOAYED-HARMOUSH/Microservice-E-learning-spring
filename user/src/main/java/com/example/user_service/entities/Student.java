@@ -15,6 +15,9 @@ public class Student {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+    
+    @Column(nullable = false)
+    private Double walletBalance = 0.0;
 
     // Getters and Setters
     public Long getId() {
@@ -39,5 +42,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    
+    public Double getWalletBalance() {
+        return walletBalance;
+    }
+    
+    public void setWalletBalance(Double walletBalance) {
+        this.walletBalance = walletBalance;
     }
 }
