@@ -1,6 +1,7 @@
 package com.microServices.courseManagement.controllers;
 
 import com.microServices.courseManagement.dto.ExamDTO;
+import com.microServices.courseManagement.dto.ExamWithQuestionsDTO;
 import com.microServices.courseManagement.services.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,11 @@ public class ExamController {
     @GetMapping("/{id}")
     public ResponseEntity<ExamDTO> getExamById(@PathVariable Long id) {
         return ResponseEntity.ok(examService.getExamById(id));
+    }
+    
+    @GetMapping("/{id}/with-questions")
+    public ResponseEntity<ExamWithQuestionsDTO> getExamWithQuestions(@PathVariable Long id) {
+        return ResponseEntity.ok(examService.getExamWithQuestions(id));
     }
     
     // Instructor endpoints - only instructors can access

@@ -1,51 +1,31 @@
-package com.microServices.courseManagement.dto;
-
-import com.microServices.courseManagement.entities.Question;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+package com.microServices.Exam.dto;
 
 public class QuestionDTO {
     
     private Long id;
-    
-    @NotNull(message = "Exam ID is required")
-    private Long examId;
-    
-    @NotBlank(message = "Question text is required")
-    private String question;
-    
-    @NotBlank(message = "Answer 1 is required")
+    private String questionText;
     private String answer1;
-    
-    @NotBlank(message = "Answer 2 is required")
     private String answer2;
-    
-    @NotBlank(message = "Answer 3 is required")
     private String answer3;
-    
-    @NotBlank(message = "Answer 4 is required")
     private String answer4;
-    
-    @NotNull(message = "Correct answer is required")
-    private Question.CorrectAnswer correctAnswer;
-    
-    @NotNull(message = "Question degree is required")
-    private Double degree = 10.0;
+    private String correctAnswer; // ANSWER1, ANSWER2, ANSWER3, ANSWER4
+    private Double degree;
+    private Long examId;
     
     // Constructors
     public QuestionDTO() {}
     
-    public QuestionDTO(Long id, Long examId, String question, String answer1, String answer2, String answer3, String answer4, Question.CorrectAnswer correctAnswer, Double degree) {
+    public QuestionDTO(Long id, String questionText, String answer1, String answer2, 
+                      String answer3, String answer4, String correctAnswer, Double degree, Long examId) {
         this.id = id;
-        this.examId = examId;
-        this.question = question;
+        this.questionText = questionText;
         this.answer1 = answer1;
         this.answer2 = answer2;
         this.answer3 = answer3;
         this.answer4 = answer4;
         this.correctAnswer = correctAnswer;
         this.degree = degree;
+        this.examId = examId;
     }
     
     // Getters and Setters
@@ -57,20 +37,12 @@ public class QuestionDTO {
         this.id = id;
     }
     
-    public Long getExamId() {
-        return examId;
+    public String getQuestionText() {
+        return questionText;
     }
     
-    public void setExamId(Long examId) {
-        this.examId = examId;
-    }
-    
-    public String getQuestion() {
-        return question;
-    }
-    
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
     
     public String getAnswer1() {
@@ -105,11 +77,11 @@ public class QuestionDTO {
         this.answer4 = answer4;
     }
     
-    public Question.CorrectAnswer getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
     
-    public void setCorrectAnswer(Question.CorrectAnswer correctAnswer) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
     
@@ -119,5 +91,13 @@ public class QuestionDTO {
     
     public void setDegree(Double degree) {
         this.degree = degree;
+    }
+    
+    public Long getExamId() {
+        return examId;
+    }
+    
+    public void setExamId(Long examId) {
+        this.examId = examId;
     }
 } 

@@ -49,6 +49,7 @@ public class QuestionService {
         existingQuestion.setAnswer3(questionDTO.getAnswer3());
         existingQuestion.setAnswer4(questionDTO.getAnswer4());
         existingQuestion.setCorrectAnswer(questionDTO.getCorrectAnswer());
+        existingQuestion.setDegree(questionDTO.getDegree());
         
         Question updatedQuestion = questionRepository.save(existingQuestion);
         return convertToDTO(updatedQuestion);
@@ -68,6 +69,7 @@ public class QuestionService {
         dto.setAnswer3(question.getAnswer3());
         dto.setAnswer4(question.getAnswer4());
         dto.setCorrectAnswer(question.getCorrectAnswer());
+        dto.setDegree(question.getDegree());
         return dto;
     }
     
@@ -81,6 +83,7 @@ public class QuestionService {
         question.setAnswer3(dto.getAnswer3());
         question.setAnswer4(dto.getAnswer4());
         question.setCorrectAnswer(dto.getCorrectAnswer());
+        question.setDegree(dto.getDegree());
         return question;
     }
 } 

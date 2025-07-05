@@ -1,6 +1,8 @@
 package com.microServices.courseManagement.services;
 
 import com.microServices.courseManagement.dto.ExamDTO;
+import com.microServices.courseManagement.dto.ExamWithQuestionsDTO;
+import com.microServices.courseManagement.dto.QuestionDTO;
 import com.microServices.courseManagement.entities.Exam;
 import com.microServices.courseManagement.repositories.ExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class ExamService {
     
     @Autowired
     private ExamRepository examRepository;
+    
+    @Autowired
+    private QuestionService questionService;
     
     public List<ExamDTO> getAllExams() {
         return examRepository.findAll().stream()
@@ -54,6 +59,26 @@ public class ExamService {
     
     public void deleteExam(Long id) {
         examRepository.deleteById(id);
+    }
+    
+    /**
+     * الحصول على امتحان مع الأسئلة
+     */
+    public ExamWithQuestionsDTO getExamWithQuestions(Long id) {
+        Exam exam = examRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Exam not found"));
+        
+        List<QuestionDTO> questions = questionService.getQuestionsByExam(id);
+        
+        return new ExamWithQuestionsDTO(
+            exam.getId(),
+            exam.getName(),
+            exam.getDescription(),
+            exam.getCourseId(),
+            exam.getDegree(),
+            exam.getSuccessDegree(),
+            questions
+        );
     }
     
     private ExamDTO convertToDTO(Exam exam) {

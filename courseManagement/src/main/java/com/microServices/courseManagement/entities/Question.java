@@ -32,6 +32,9 @@ public class Question {
     @Column(nullable = false)
     private CorrectAnswer correctAnswer;
     
+    @Column(nullable = false)
+    private Double degree = 10.0; // درجة السؤال - افتراضياً 1.0
+    
     public enum CorrectAnswer {
         ANSWER1,
         ANSWER2,
@@ -42,7 +45,7 @@ public class Question {
     // Constructors
     public Question() {}
     
-    public Question(Long id, Long examId, String question, String answer1, String answer2, String answer3, String answer4, CorrectAnswer correctAnswer) {
+    public Question(Long id, Long examId, String question, String answer1, String answer2, String answer3, String answer4, CorrectAnswer correctAnswer, Double degree) {
         this.id = id;
         this.examId = examId;
         this.question = question;
@@ -51,6 +54,7 @@ public class Question {
         this.answer3 = answer3;
         this.answer4 = answer4;
         this.correctAnswer = correctAnswer;
+        this.degree = degree;
     }
     
     // Getters and Setters
@@ -116,5 +120,13 @@ public class Question {
     
     public void setCorrectAnswer(CorrectAnswer correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+    
+    public Double getDegree() {
+        return degree;
+    }
+    
+    public void setDegree(Double degree) {
+        this.degree = degree;
     }
 } 
