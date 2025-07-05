@@ -6,6 +6,8 @@ spring:
     name: Exam
   config:
     import: optional:configserver:http://localhost:8080
+  main:
+    allow-bean-definition-overriding: true
 
   datasource:
     url: jdbc:mysql://localhost:3306/Exam_microservice?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
@@ -19,23 +21,55 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        use_sql_comments: true
+    packages-to-scan: com.microServices.Exam.entities
+    open-in-view: false
+
+  # Spring Cloud LoadBalancer Configuration
+  cloud:
+    loadbalancer:
+      cache:
+        enabled: true
+        ttl: 35s
+      health-check:
+        initial-delay: 0
+        interval: 25s
+      configurations: default
+      enabled: true
+      ribbon:
+        enabled: false  # Disable Ribbon as we're using Spring Cloud LoadBalancer
 
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
 
 # JWT Configuration - يجب أن يكون نفس المفتاح المستخدم في User Service
 jwt:
   secret: thisIsA64CharacterLongSecretKeyForHS256AlgorithmThatIsSecureEnoughForJWT!!
 
-# External Services URLs
+# External Services URLs with Load Balancing
 course:
   service:
-    url: http://localhost:8082
+    url: http://localhost:8010
 
 payment:
   service:
-    url: http://localhost:8050
+    url: http://localhost:8010
+
+# Management endpoints for monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loadbalancer
+  endpoint:
+    health:
+      show-details: always

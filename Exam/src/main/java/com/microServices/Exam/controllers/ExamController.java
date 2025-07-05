@@ -1,5 +1,6 @@
 package com.microServices.Exam.controllers;
 
+import com.microServices.Exam.dto.ExamDTO;
 import com.microServices.Exam.dto.ExamResultDTO;
 import com.microServices.Exam.dto.ExamSubmissionDTO;
 import com.microServices.Exam.services.ExamService;
@@ -25,6 +26,12 @@ public class ExamController {
     
     @Autowired
     private JwtUtil jwtUtil;
+    
+    @Autowired
+    private com.microServices.Exam.clients.CourseServiceClient courseServiceClient;
+    
+    @Autowired
+    private com.microServices.Exam.clients.PaymentServiceClient paymentServiceClient;
     
     /**
      * تقديم امتحان من قبل الطالب
@@ -163,7 +170,96 @@ public class ExamController {
      */
     @GetMapping("/health")
     public ResponseEntity<String> health() {
-        return ResponseEntity.ok("Exam Service is running!");
+        return ResponseEntity.ok("Exam Service is running on port: " + 
+                                System.getProperty("server.port", "8040"));
+    }
+    
+    /**
+     * Load Balancer Health Check
+     */
+    @GetMapping("/actuator/health")
+    public ResponseEntity<String> actuatorHealth() {
+        return ResponseEntity.ok("{\"status\":\"UP\",\"port\":\"" + 
+                                System.getProperty("server.port", "8040") + "\"}");
+    }
+    
+    /**
+     * API تجريبي لاختبار الاتصال مع خدمة إدارة الكورسات
+     */
+    @GetMapping("/test/course-service-connection")
+    public ResponseEntity<String> testCourseServiceConnection(HttpServletRequest request) {
+        logger.info("Testing connection with Course Management Service");
+        
+        String token = extractToken(request);
+        if (token == null || !jwtUtil.validateToken(token)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        }
+        
+        StringBuilder result = new StringBuilder();
+        result.append("=== اختبار الاتصال مع خدمة إدارة الكورسات ===\n");
+        
+        try {
+            // اختبار الحصول على امتحان
+            result.append("1. اختبار الحصول على امتحان ID = 1:\n");
+            ExamDTO exam = courseServiceClient.getExamById(1L, token);
+            if (exam != null) {
+                result.append("   ✓ تم الحصول على الامتحان بنجاح\n");
+                result.append("   - اسم الامتحان: ").append(exam.getName()).append("\n");
+                result.append("   - عدد الأسئلة: ").append(exam.getQuestions() != null ? exam.getQuestions().size() : 0).append("\n");
+                result.append("   - الدرجة الكلية: ").append(exam.getTotalDegree()).append("\n");
+                result.append("   - درجة النجاح: ").append(exam.getPassingDegree()).append("\n");
+            } else {
+                result.append("   ✗ فشل في الحصول على الامتحان\n");
+            }
+            
+            // اختبار التحقق من وجود امتحان
+            result.append("\n2. اختبار التحقق من وجود امتحان ID = 1:\n");
+            boolean examExists = courseServiceClient.examExists(1L, token);
+            result.append("   امتحان ID = 1 موجود: ").append(examExists ? "نعم" : "لا").append("\n");
+            
+            // اختبار التحقق من وجود امتحان غير موجود
+            result.append("\n3. اختبار التحقق من وجود امتحان ID = 999:\n");
+            boolean nonExistentExam = courseServiceClient.examExists(999L, token);
+            result.append("   امتحان ID = 999 موجود: ").append(nonExistentExam ? "نعم" : "لا").append("\n");
+            
+        } catch (Exception e) {
+            result.append("   ✗ خطأ في الاتصال: ").append(e.getMessage()).append("\n");
+            logger.error("Error testing course service connection: {}", e.getMessage(), e);
+        }
+        
+        return ResponseEntity.ok(result.toString());
+    }
+    
+    /**
+     * API تجريبي لاختبار الاتصال مع خدمة الدفع
+     */
+    @GetMapping("/test/payment-service-connection")
+    public ResponseEntity<String> testPaymentServiceConnection(HttpServletRequest request) {
+        logger.info("Testing connection with Payment Service");
+        
+        String token = extractToken(request);
+        if (token == null || !jwtUtil.validateToken(token)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
+        }
+        
+        StringBuilder result = new StringBuilder();
+        result.append("=== اختبار الاتصال مع خدمة الدفع ===\n");
+        
+        try {
+            Long studentId = jwtUtil.getStudentId(token);
+            result.append("Student ID from token: ").append(studentId).append("\n");
+            
+            // اختبار التحقق من اشتراك الطالب في كورس
+            result.append("\n1. اختبار التحقق من اشتراك الطالب في كورس ID = 1:\n");
+            boolean isEnrolled = paymentServiceClient.isStudentEnrolledInCourse(studentId, 1L, token);
+            result.append("   الطالب مشترك في الكورس ID = 1: ").append(isEnrolled ? "نعم" : "لا").append("\n");
+            
+        } catch (Exception e) {
+            result.append("   ✗ خطأ في الاتصال: ").append(e.getMessage()).append("\n");
+            logger.error("Error testing payment service connection: {}", e.getMessage(), e);
+        }
+        
+        return ResponseEntity.ok(result.toString());
     }
     
     // Helper method to extract token from request

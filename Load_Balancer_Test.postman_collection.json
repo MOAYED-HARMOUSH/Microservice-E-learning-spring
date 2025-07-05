@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "load-balancer-test",
+		"name": "Load Balancer Test - Exam Service",
+		"description": "Test collection for Load Balancing functionality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test Load Balancer - Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8010/api/exams/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"exams",
+						"health"
+					]
+				},
+				"description": "Test which Exam Service instance handles the request"
+			},
+			"response": []
+		},
+		{
+			"name": "Test Load Balancer - Token Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{student_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8010/api/exams/test/token-info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"exams",
+						"test",
+						"token-info"
+					]
+				},
+				"description": "Test token info endpoint with load balancing"
+			},
+			"response": []
+		},
+		{
+			"name": "Test Load Balancer - Submit Exam",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{student_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"examId\": 1,\n  \"answers\": {\n    \"1\": \"ANSWER1\",\n    \"2\": \"ANSWER2\",\n    \"3\": \"ANSWER3\"\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8010/api/exams/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"exams",
+						"submit"
+					]
+				},
+				"description": "Test exam submission with load balancing"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "student_token",
+			"value": "YOUR_STUDENT_TOKEN_HERE",
+			"type": "string"
+		}
+	]
+} 

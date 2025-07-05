@@ -1,0 +1,217 @@
+{
+    "info": {
+        "_postman_id": "load-balancer-tests",
+        "name": "Load Balancer Tests",
+        "description": "Collection for testing load balancing functionality in Exam Service",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Load Balancer Health Check",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{gateway_url}}/api/exams/loadbalancer/health",
+                    "host": [
+                        "{{gateway_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "exams",
+                        "loadbalancer",
+                        "health"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Load Balancer Instances",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{gateway_url}}/api/exams/loadbalancer/instances",
+                    "host": [
+                        "{{gateway_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "exams",
+                        "loadbalancer",
+                        "instances"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Load Balancer Stats",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{gateway_url}}/api/exams/loadbalancer/stats",
+                    "host": [
+                        "{{gateway_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "exams",
+                        "loadbalancer",
+                        "stats"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get All Services",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{gateway_url}}/api/exams/loadbalancer/services",
+                    "host": [
+                        "{{gateway_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "exams",
+                        "loadbalancer",
+                        "services"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Test Load Distribution - Multiple Requests",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{gateway_url}}/api/exams/loadbalancer/health",
+                    "host": [
+                        "{{gateway_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "exams",
+                        "loadbalancer",
+                        "health"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Direct Instance 1 Health",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8040/actuator/health",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8040",
+                    "path": [
+                        "actuator",
+                        "health"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Direct Instance 2 Health",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8041/actuator/health",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8041",
+                    "path": [
+                        "actuator",
+                        "health"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Direct Instance 3 Health",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8042/actuator/health",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8042",
+                    "path": [
+                        "actuator",
+                        "health"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "gateway_url",
+            "value": "http://localhost:8010",
+            "type": "string"
+        }
+    ]
+}

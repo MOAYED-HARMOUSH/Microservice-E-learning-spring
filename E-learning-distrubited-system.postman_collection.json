@@ -1,0 +1,2420 @@
+{
+	"info": {
+		"_postman_id": "837969ae-f3ff-4112-85f3-c32a989d802c",
+		"name": "E-learning-distrubited-system",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45277908",
+		"_collection_link": "https://land-transport.postman.co/workspace/GraduationsProject~e4456a05-1f03-45e1-8808-07097edd852e/collection/45277908-837969ae-f3ff-4112-85f3-c32a989d802c?action=share&source=collection_link&creator=45277908"
+	},
+	"item": [
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "instructors",
+					"item": [
+						{
+							"name": "create instructor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjIsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2MzcyMTEsImV4cCI6MTc1MTcyMzYxMX0.istyxOh4G4qcF258zAm3b4txRIK3I8H-LTKEO5Q-FFs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"TETC2@22.c\",\n    \"password\": \"An221b$emjqdqw34\",\n    \"name\":\"TETCHER1\",\n    \"phone\":\"phone22\",\n    \"specialization\":\"SOFTWARE\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "update instructor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjIsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2MzcyMTEsImV4cCI6MTc1MTcyMzYxMX0.istyxOh4G4qcF258zAm3b4txRIK3I8H-LTKEO5Q-FFs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"TE2TC2@22.c1\",\n    \"password\": \"An2221b$emjqdqw34\",\n    \"name\":\"TETCHER1222\",\n    \"phone\":\"phone22\",\n    \"specialization\":\"SOFTWARE\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors",
+										"3"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "get instructors",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjEsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2NDg0MTYsImV4cCI6MTc1MTczNDgxNn0.N0QSHO1Jzg7OVPlRlk2u9BCVwEOBAiIEGJy0aNB9v5E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "get one instructor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjEsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2NDg0MTYsImV4cCI6MTc1MTczNDgxNn0.N0QSHO1Jzg7OVPlRlk2u9BCVwEOBAiIEGJy0aNB9v5E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors",
+										"1"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete instructor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjEsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2NDg0MTYsImV4cCI6MTc1MTczNDgxNn0.N0QSHO1Jzg7OVPlRlk2u9BCVwEOBAiIEGJy0aNB9v5E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors",
+										""
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Course",
+					"item": [
+						{
+							"name": "Exam",
+							"item": [
+								{
+									"name": "create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"TETCHER1\",\n    \"name\":\"phone22\",\n    \"courseId\":4\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get exams for a course",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/course/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"course",
+												"4"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get one exam",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get exams",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "delete exam",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful DELETE request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "questions",
+							"item": [
+								{
+									"name": "create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"examId\":1,\n\n  \"question\": \"hi?\",\n    \"answer1\": \"good?\",\n    \"answer2\":\"TETCHER1\",\n    \"answer3\":\"phone22\",\n    \"answer4\":\",mmm\",\n    \"correctAnswer\":\"ANSWER1\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/questions",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"questions"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get questions BY EXAMid",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdHVkZW50SWQiOjEsInJvbGUiOiJTVFVERU5UIiwidXNlcklkIjoxLCJlbWFpbCI6IlNUVURFTlRAMi5jIiwic3ViIjoiU1RVREVOVEAyLmMiLCJpYXQiOjE3NTE3MTIwMzEsImV4cCI6MTc1MTc5ODQzMX0.4aCp-aTZ8BlM0WCDbpeycA82sn1jdLdJbZtFw0C34xc",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/questions/exam/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"questions",
+												"exam",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get exams for a course",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/course/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"course",
+												"4"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get one exam",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get exams",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "delete exam",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful DELETE request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "SUBMIT EXAM",
+							"item": [
+								{
+									"name": "create",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdHVkZW50SWQiOjIsInJvbGUiOiJTVFVERU5UIiwidXNlcklkIjo0LCJlbWFpbCI6IlNUVURFTlQyQDIuYyIsInN1YiI6IlNUVURFTlQyQDIuYyIsImlhdCI6MTc1MTcxNDIwOSwiZXhwIjoxNzUxODAwNjA5fQ.TJ6CV2u_e2amQGEiD2yfL73J-xOH7uvc0LcWaoY_bp8",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"examId\": 1,\n     \"answers\": {\n    \"1\": \"ANSWER2\",\n    \"2\": \"ANSWER2\",\n        \"3\": \"ANSWER2\"\n\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8040/api/exams/submit",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8040",
+											"path": [
+												"api",
+												"exams",
+												"submit"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "students result",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdHVkZW50SWQiOjIsInJvbGUiOiJTVFVERU5UIiwidXNlcklkIjo0LCJlbWFpbCI6IlNUVURFTlQyQDIuYyIsInN1YiI6IlNUVURFTlQyQDIuYyIsImlhdCI6MTc1MTcxNDIwOSwiZXhwIjoxNzUxODAwNjA5fQ.TJ6CV2u_e2amQGEiD2yfL73J-xOH7uvc0LcWaoY_bp8",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"examId\": 1,\n     \"answers\": {\n    \"1\": \"ANSWER2\",\n    \"2\": \"ANSWER2\",\n        \"3\": \"ANSWER2\"\n\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8040/api/exams/submit",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8040",
+											"path": [
+												"api",
+												"exams",
+												"submit"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get exams for a course",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/course/4",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"course",
+												"4"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get one exam",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "get exams",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful PUT request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"successDegree\": 60,\n    \"degree\": 100,\n    \"description\":\"tec1hj2\",\n    \"name\":\"phone22\",\n    \"courseId\":6\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams"
+											]
+										},
+										"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+									},
+									"response": []
+								},
+								{
+									"name": "delete exam",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Successful DELETE request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+													"});",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6NCwiZW1haWwiOiJJbnM1NTJAeC5jIiwiaW5zdHJ1Y3RvcklkIjoyLCJzdWIiOiJJbnM1NTJAeC5jIiwiaWF0IjoxNzUxNjYyNDMwLCJleHAiOjE3NTE3NDg4MzB9.yJK0nspCevrmVGCsiIZIncPdob46f9D_EOLfMNKOFgE",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8010/api/courses/exams/1",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8010",
+											"path": [
+												"api",
+												"courses",
+												"exams",
+												"1"
+											]
+										},
+										"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjIsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2MzcyMTEsImV4cCI6MTc1MTcyMzYxMX0.istyxOh4G4qcF258zAm3b4txRIK3I8H-LTKEO5Q-FFs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"TETC2@22.c\",\n    \"password\": \"An221b$emjqdqw34\",\n    \"name\":\"TETCHER1\",\n    \"phone\":\"phone22\",\n    \"specialization\":\"SOFTWARE\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "update course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6MywiZW1haWwiOiJJbnM1NUB4LmMiLCJpbnN0cnVjdG9ySWQiOjEsInN1YiI6IkluczU1QHguYyIsImlhdCI6MTc1MTY2MTE4MywiZXhwIjoxNzUxNzQ3NTgzfQ.nXWuHQgQ_aC1y9p0USg_rQU6HagurrMzmjCBeju0knM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"description\": \"An221b$emjqdqw34\",\n    \"name\":\"UPDATAED\",\n    \"cost\": 50\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/courses/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"courses",
+										"1"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "get courses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjEsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2NDg0MTYsImV4cCI6MTc1MTczNDgxNn0.N0QSHO1Jzg7OVPlRlk2u9BCVwEOBAiIEGJy0aNB9v5E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "get instructor's course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6MywiZW1haWwiOiJJbnM1NUB4LmMiLCJpbnN0cnVjdG9ySWQiOjEsInN1YiI6IkluczU1QHguYyIsImlhdCI6MTc1MTY2MTE4MywiZXhwIjoxNzUxNzQ3NTgzfQ.nXWuHQgQ_aC1y9p0USg_rQU6HagurrMzmjCBeju0knM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/courses/instructor/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"courses",
+										"instructor",
+										"1"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "get pending courses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJhZG1pbklkIjoxLCJ1c2VySWQiOjIsImVtYWlsIjoiQURNSU5AMi5jIiwic3ViIjoiQURNSU5AMi5jIiwiaWF0IjoxNzUxNjYxOTA5LCJleHAiOjE3NTE3NDgzMDl9.eSB0d5iBxlhiQYZXTXoMgw8zK8-FiJONr-e-ZG8GHKk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/courses/admin/pending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"courses",
+										"admin",
+										"pending"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "aprove course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJhZG1pbklkIjoxLCJ1c2VySWQiOjIsImVtYWlsIjoiQURNSU5AMi5jIiwic3ViIjoiQURNSU5AMi5jIiwiaWF0IjoxNzUxNjYxOTA5LCJleHAiOjE3NTE3NDgzMDl9.eSB0d5iBxlhiQYZXTXoMgw8zK8-FiJONr-e-ZG8GHKk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/courses/admin/pending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"courses",
+										"admin",
+										"pending"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "admin /get all courses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJhZG1pbklkIjoxLCJ1c2VySWQiOjIsImVtYWlsIjoiQURNSU5AMi5jIiwic3ViIjoiQURNSU5AMi5jIiwiaWF0IjoxNzUxNjYxOTA5LCJleHAiOjE3NTE3NDgzMDl9.eSB0d5iBxlhiQYZXTXoMgw8zK8-FiJONr-e-ZG8GHKk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/courses/admin/pending",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"courses",
+										"admin",
+										"pending"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "get one course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiSU5TVFJVQ1RPUiIsInVzZXJJZCI6MywiZW1haWwiOiJJbnM1NUB4LmMiLCJpbnN0cnVjdG9ySWQiOjEsInN1YiI6IkluczU1QHguYyIsImlhdCI6MTc1MTY2MTE4MywiZXhwIjoxNzUxNzQ3NTgzfQ.nXWuHQgQ_aC1y9p0USg_rQU6HagurrMzmjCBeju0knM",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/courses/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"courses",
+										"2"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete course",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJ1c2VySWQiOjEsImVtYWlsIjoiQURNSU4yQDIuYyIsInN1YiI6IkFETUlOMkAyLmMiLCJpYXQiOjE3NTE2NDg0MTYsImV4cCI6MTc1MTczNDgxNn0.N0QSHO1Jzg7OVPlRlk2u9BCVwEOBAiIEGJy0aNB9v5E",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/instructors/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"instructors",
+										""
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "wallet",
+					"item": [
+						{
+							"name": "add money",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdHVkZW50SWQiOjEsInJvbGUiOiJTVFVERU5UIiwidXNlcklkIjoxLCJlbWFpbCI6IlNUVURFTlRAMi5jIiwic3ViIjoiU1RVREVOVEAyLmMiLCJpYXQiOjE3NTE2NzE1NjMsImV4cCI6MTc1MTc1Nzk2M30.Hj6IxlIsLYInA334ZzfSqYwW9IEs3blF_XAUtgDHASA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "100",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/users/wallet/1/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"users",
+										"wallet",
+										"1",
+										"add"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "enroll",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdHVkZW50SWQiOjEsInJvbGUiOiJTVFVERU5UIiwidXNlcklkIjoxLCJlbWFpbCI6IlNUVURFTlRAMi5jIiwic3ViIjoiU1RVREVOVEAyLmMiLCJpYXQiOjE3NTE2NzMwMzUsImV4cCI6MTc1MTc1OTQzNX0.ZabipwgkTtPH4AW23HQIpLiH41u-hPkRl0ehW07QNbg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/payments/enroll/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"payments",
+										"enroll",
+										"2"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "enrollments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdHVkZW50SWQiOjEsInJvbGUiOiJTVFVERU5UIiwidXNlcklkIjoxLCJlbWFpbCI6IlNUVURFTlRAMi5jIiwic3ViIjoiU1RVREVOVEAyLmMiLCJpYXQiOjE3NTE2NzMwMzUsImV4cCI6MTc1MTc1OTQzNX0.ZabipwgkTtPH4AW23HQIpLiH41u-hPkRl0ehW07QNbg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"TE2TC2@22.c1\",\n    \"password\": \"An2221b$emjqdqw34\",\n    \"name\":\"TETCHER1222\",\n    \"phone\":\"phone22\",\n    \"specialization\":\"SOFTWARE\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8010/api/payments/enrollments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8010",
+									"path": [
+										"api",
+										"payments",
+										"enrollments"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"5511515\",\r\n    \"email\": \"moay22222222ad@2.c\",\r\n    \"password\": \"An21b$emjqdqw34\",\r\n    \"phone\": \"5511515\",\r\n    \"role\": \"STUDENT\",\r\n    \"status\": \"ACTIVE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8010/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"moay22222222ad@2.c\",\r\n    \"password\": \"An21b$emjqdqw34\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8010/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8010",
+							"path": [
+								"api",
+								"users",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		},
+		{
+			"key": "gateway_url",
+			"value": "http://localhost:8000/",
+			"type": "string"
+		}
+	]
+}
