@@ -11,6 +11,7 @@ public class ExamDTO {
     private Double totalDegree;
     private Double passingDegree;
     private List<QuestionDTO> questions;
+    private String errorMessage;
     
     // Constructors
     public ExamDTO() {}
@@ -80,5 +81,13 @@ public class ExamDTO {
     
     public void setQuestions(List<QuestionDTO> questions) {
         this.questions = questions;
+    }
+    
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+    
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 } 

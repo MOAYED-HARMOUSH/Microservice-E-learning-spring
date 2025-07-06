@@ -8,6 +8,7 @@ public class CourseDTO {
     private Double cost;
     private Long instructorId;
     private String status; // PENDING, APPROVED, REJECTED
+    private String errorMessage;
     
     // Constructors
     public CourseDTO() {}
@@ -68,5 +69,22 @@ public class CourseDTO {
     
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+    
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+    
+    // Helper method for backward compatibility
+    public String getTitle() {
+        return name;
+    }
+    
+    public void setTitle(String title) {
+        this.name = title;
     }
 } 

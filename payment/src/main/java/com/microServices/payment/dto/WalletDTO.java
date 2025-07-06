@@ -5,6 +5,7 @@ public class WalletDTO {
     private Long userId;
     private Double balance;
     private String currency = "USD";
+    private String errorMessage;
     
     // Constructors
     public WalletDTO() {}
@@ -43,5 +44,13 @@ public class WalletDTO {
     
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+    
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+    
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 } 

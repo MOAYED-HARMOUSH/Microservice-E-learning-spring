@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
@@ -26,16 +27,16 @@ public class CourseServiceClient {
     private String courseServiceUrl;
     
     /**
-     * الحصول على امتحان محدد بواسطة ID مع الأسئلة
+     * الحصول على امتحان محدد بواسطة ID مع الأسئلة ومعالجة الأخطاء
      */
     public ExamDTO getExamById(Long examId, String jwtToken) {
-        String url = courseServiceUrl + "/api/courses/exams/" + examId + "/with-questions";
-        logger.info("Getting exam by ID: {} from URL: {}", examId, url);
-        
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + jwtToken);
-        
         try {
+            String url = courseServiceUrl + "/api/courses/exams/" + examId + "/with-questions";
+            logger.info("Getting exam by ID: {} from URL: {}", examId, url);
+            
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + jwtToken);
+            
             HttpEntity<String> request = new HttpEntity<>(headers);
             ResponseEntity<Map> response = restTemplate.exchange(
                 url, 
@@ -87,20 +88,35 @@ public class CourseServiceClient {
             }
             
             return exam;
+        } catch (ResourceAccessException e) {
+            // في حالة timeout أو فشل الاتصال
+            logger.warn("Service timeout or connection failed for exam ID: {}. Error: {}", examId, e.getMessage());
+            ExamDTO errorExam = new ExamDTO();
+            errorExam.setId(examId);
+            errorExam.setName("Exam Unavailable - Service Error");
+            errorExam.setDescription("This exam is temporarily unavailable due to service issues.");
+            errorExam.setErrorMessage("Service timeout or connection failed after 5 seconds");
+            return errorExam;
         } catch (Exception e) {
+            // في حالة أي خطأ آخر
             logger.error("Error getting exam by ID {}: {}", examId, e.getMessage(), e);
-            throw e;
+            ExamDTO errorExam = new ExamDTO();
+            errorExam.setId(examId);
+            errorExam.setName("Exam Unavailable - Service Error");
+            errorExam.setDescription("This exam is temporarily unavailable due to service issues.");
+            errorExam.setErrorMessage("Service error: " + e.getMessage());
+            return errorExam;
         }
     }
     
     /**
-     * التحقق من وجود امتحان
+     * التحقق من وجود امتحان مع معالجة الأخطاء
      */
     public boolean examExists(Long examId, String jwtToken) {
         try {
             logger.info("Checking if exam exists: {}", examId);
             ExamDTO exam = getExamById(examId, jwtToken);
-            boolean exists = exam != null;
+            boolean exists = exam != null && exam.getErrorMessage() == null;
             logger.info("Exam {} exists: {}", examId, exists);
             return exists;
         } catch (Exception e) {
